@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import firebase from './firebase';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Home       from './components/home';
+import Header     from './components/header';
 
-export default App;
+export default class App extends Component {
+
+
+    state = {
+      firebaseInitialized: false
+    };
+    
+    componentDidMount(){
+      firebase.isInitialized().then(res => {
+      this.setState({firebaseInitialized: res});
+      })
+    }
+
+  render(){
+    return this.state.firebaseInitialized !== false ? (
+      <BrowserRouter>
+        <Header/>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+        </Switch>
+      </BrowserRouter>
+    ) : (
+      <h1>Carregando...</h1>
+    );
+  }
+}
