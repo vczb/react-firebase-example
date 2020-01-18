@@ -11,7 +11,7 @@ class Login extends Component {
       password: ''
     };
     this.login    = this.login.bind(this);
-    this.onLogin  = this.login.bind(this);
+    this.onLogin  = this.onLogin.bind(this);
   }
 
   login(e){
@@ -23,7 +23,7 @@ class Login extends Component {
   onLogin = async () => {
 
     try{
-      
+
       const {email, password} = this.state;
 
       await firebase.login(email, password).catch((err) => {
