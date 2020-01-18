@@ -1,0 +1,36 @@
+div#dashboard{
+  width: 100%;
+  max-width: 930px;
+  margin: 20px auto;
+  padding: 0 30px;
+}
+
+div#dashboard .user-info{
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+
+div#dashboard .user-info a{
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: #FF0000;
+  color: #FFF;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+div#dashboard p{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+div#dashboard button{
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+}
