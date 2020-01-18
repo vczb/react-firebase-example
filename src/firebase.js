@@ -22,6 +22,9 @@ class Firebase{
   login(email, password){
     return app.auth().signInWithEmailAndPassword(email,password)
   }
+  logout(){
+    return app.auth().signOut();
+  }
 
   async register(name, email, password){
     await app.auth().createUserWithEmailAndPassword(email, password)
