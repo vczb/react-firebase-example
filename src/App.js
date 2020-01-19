@@ -8,6 +8,7 @@ import DashBoard  from './components/dashboard';
 import Login      from './components/login';
 import Header     from './components/header';
 import Register   from './components/register';
+import NewPost   from './components/newpost';
 
 export default class App extends Component {
 
@@ -27,10 +28,11 @@ export default class App extends Component {
       <BrowserRouter>
         <Header/>
         <Switch>
-          <Route exact path='/'           component={Home}/>
-          <Route exact path='/login'      component={Login}/>
-          <Route exact path='/dashboard'  component={DashBoard}/>
-          <Route exact path='/register'   component={Register}/>
+          <Route exact path='/'               component={Home}/>
+          <Route exact path='/login'          component={Login}/>
+          <Route exact path='/dashboard'      component={DashBoard}/>
+          <Route exact path='/dashboard/new'  component={NewPost}/>
+          <Route exact path='/register'       component={Register}/>
         </Switch>
       </BrowserRouter>
     ) : (
