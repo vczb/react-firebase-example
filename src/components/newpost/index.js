@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
-
+import firebase from '../../firebase';
 import './newpost.css';
 
 class NewPost extends Component {
@@ -11,12 +11,43 @@ class NewPost extends Component {
       subtitle: '',
       description: '',
       image: '',
+      alert: ''
     };
-  this.cadastrar = this.cadastrar.bind(this);
+  this.addPost    = this.addPost.bind(this);
+  this.onAddPost  = this.onAddPost.bind(this);
   }
 
-  cadastrar(){
+  async  componentDidMount(){
+    if(!firebase.getCurrent()){
+      this.props.history.replace('/');
+      return null;
+    }
+    firebase.getUserName((info)=>{
+      localStorage.name = info.val().name;
+      this.setState({name: localStorage.name })
+    })
+  }
 
+  addPost(e){
+    e.preventDefault();
+    this.onAddPost();
+  }
+
+  onAddPost = async () =>{
+    if(this.state.titulo !== '' && this.state.image !== '' && this.state.description !== ''){
+      let posts = firebase.app.ref('posts');
+      let key = posts.push().key;
+      await posts.child(key).set({
+        title:        this.state.title,
+        subtitle:     this.state.subtitle,
+        image:        this.state.image,
+        description:  this.state.description,
+        author:       localStorage.name
+      });
+      this.props.history.push('/dashboard');
+    }else {
+      this.setState({alert: 'Preencha todos os campos!'});
+    }
   }
 
   render(){
@@ -25,7 +56,8 @@ class NewPost extends Component {
         <header id="newpost">
           <Link to="/dashboard">Voltar</Link>
         </header>
-        <form onSubmit={this.cadastrar} id="form-post" >
+        <form onSubmit={this.addPost} id="form-post" >
+          <span>{this.state.alert}</span>
           <label>Título:</label>
           <input type="text" placeholder="Digite o título"
           value={this.state.title} onChange={(e)=> this.setState({title: e.target.value})} autoFocus />
