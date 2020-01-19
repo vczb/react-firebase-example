@@ -23,6 +23,7 @@ class Home extends Component {
           link:         childItem.val().link
         })
       });
+      state.posts.reverse();
       this.setState(state);
     })
   }
