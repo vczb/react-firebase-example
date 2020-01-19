@@ -1,22 +1,25 @@
 import app from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
+import 'firebase/storage';
 
 let firebaseConfig = {
-  apiKey: "AIzaSyAagJrsus4-HljWI3Q3fb5N2vxQpk9aUUQ",
-  authDomain: "teste-83dbe.firebaseapp.com",
-  databaseURL: "https://teste-83dbe.firebaseio.com",
-  projectId: "teste-83dbe",
-  storageBucket: "teste-83dbe.appspot.com",
-  messagingSenderId: "65272547762",
-  appId: "1:65272547762:web:5a84cc74062dd4fd337cab"
-};
+    apiKey: "AIzaSyBCuw18Tt2U4Us3fSszRtqmfjNkDqgYcXg",
+    authDomain: "react-blog-e8b05.firebaseapp.com",
+    databaseURL: "https://react-blog-e8b05.firebaseio.com",
+    projectId: "react-blog-e8b05",
+    storageBucket: "react-blog-e8b05.appspot.com",
+    messagingSenderId: "984283019221",
+    appId: "1:984283019221:web:dfe4798b47a93172076f5c"
+  };
 
 class Firebase{
   constructor(){
     app.initializeApp(firebaseConfig);
 
-    this.app = app.database();
+    this.app      = app.database();
+
+    this.storage  = app.storage();
   }
 
   login(email, password){
@@ -45,6 +48,10 @@ class Firebase{
 
   getCurrent(){
     return app.auth().currentUser && app.auth().currentUser.email
+  }
+
+  getCurrentUid(){
+    return app.auth().currentUser && app.auth().currentUser.uid
   }
 
   async getUserName(callback){
