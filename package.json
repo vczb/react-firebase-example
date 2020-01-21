@@ -1,12 +1,18 @@
 {
   "name": "blog",
   "version": "0.1.0",
+  "engines": {
+   "node": "10.15.3"
+ },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "firebase": "^7.7.0",
+    "path": "^0.12.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
